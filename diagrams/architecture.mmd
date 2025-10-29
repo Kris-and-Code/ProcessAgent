@@ -1,0 +1,11 @@
+flowchart TD
+    A[User / UI] -->|spec| B[API FastAPI]
+    B --> C[Orchestrator]
+    C --> D[PlannerAgent]
+    C --> E[CodeAgent]
+    C --> F[ValidatorAgent]
+    D --> G[(Machining DB JSON)]
+    E --> G
+    F --> G
+    C -->|returns| B
+    B -->|plan + pseudo-G-code| A

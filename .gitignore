@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+*.egg
+
+# Environments
+.venv/
+.env
+.env.*
+
+# Editors
+.vscode/
+.idea/
+
+# Notebooks
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Streamlit
+.streamlit/
+
+# Coverage / pytest
+.coverage*
+htmlcov/
+.pytest_cache/
+
+# Local data (safe to ignore examples; keep DB tracked)
+/data/examples/*

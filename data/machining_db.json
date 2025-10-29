@@ -1,0 +1,45 @@
+{
+  "version": "0.1.0",
+  "materials": {
+    "aluminum_6061": {
+      "recommended_rpm": 12000,
+      "recommended_feed_mm_per_min": 800,
+      "notes": "General purpose aluminum, good machinability"
+    },
+    "steel_1018": {
+      "recommended_rpm": 6000,
+      "recommended_feed_mm_per_min": 300,
+      "notes": "Low carbon steel"
+    }
+  },
+  "tools": {
+    "endmill_6mm": {
+      "type": "endmill",
+      "diameter_mm": 6,
+      "flutes": 4,
+      "material": "carbide"
+    },
+    "drill_3mm": {
+      "type": "drill",
+      "diameter_mm": 3,
+      "flutes": 2,
+      "material": "HSS"
+    },
+    "drill_6mm": {
+      "type": "drill",
+      "diameter_mm": 6,
+      "flutes": 2,
+      "material": "HSS"
+    }
+  },
+  "operations": {
+    "face_milling": {
+      "description": "Face the top surface to achieve flatness",
+      "default_tool": "endmill_6mm"
+    },
+    "drilling": {
+      "description": "Drill a through hole",
+      "default_tool": "drill_3mm"
+    }
+  }
+}
