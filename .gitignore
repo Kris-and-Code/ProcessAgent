@@ -32,3 +32,6 @@ htmlcov/
 
 # Local data (safe to ignore examples; keep DB tracked)
 /data/examples/*
+
+.venv/
+venv/
