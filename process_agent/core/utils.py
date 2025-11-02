@@ -21,6 +21,36 @@ def utc_timestamp() -> str:
     return datetime.now(timezone.utc).isoformat()
 
 
+def parse_goal_to_spec(goal: str) -> Dict[str, Any]:
+    """Parse a natural language goal into a machining spec.
+    
+    Examples:
+        "Prepare drilling operation for aluminum part" -> 
+        {"material": "aluminum_6061", "drill_holes": [{"diameter_mm": 6, "depth_mm": 10, "position": [0, 0]}]}
+    """
+    goal_lower = goal.lower()
+    
+    # Detect material
+    material = "aluminum_6061"  # default
+    if "aluminum" in goal_lower or "aluminium" in goal_lower:
+        material = "aluminum_6061"
+    elif "steel" in goal_lower:
+        material = "steel_1018"
+    elif "titanium" in goal_lower:
+        material = "titanium"  # Will cause error as expected
+    
+    # Detect operation
+    drill_holes = []
+    if "drill" in goal_lower or "drilling" in goal_lower:
+        # Default drilling parameters
+        drill_holes = [{"diameter_mm": 6.0, "depth_mm": 10.0, "position": [0.0, 0.0]}]
+    
+    return {
+        "material": material,
+        "drill_holes": drill_holes if drill_holes else None,
+    }
+
+
 def pretty_print_plan(plan: List[dict]) -> str:
     out = []
     for i, step in enumerate(plan):

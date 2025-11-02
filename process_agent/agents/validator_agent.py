@@ -5,12 +5,14 @@ from typing import Any, Dict, List, Tuple
 class ValidatorAgent:
     """Validates the plan and generated pseudo–G-code for basic issues."""
 
-    def validate(self, plan: List[Dict[str, Any]], gcode: str) -> Tuple[bool, List[str]]:
+    def validate(self, plan: List[Dict[str, Any]], gcode: str | None) -> Tuple[bool, List[str]]:
         errors: List[str] = []
         if not plan:
             errors.append("Plan is empty")
-        if not gcode or "PSEUDO-GCODE" not in gcode or "M30" not in gcode:
-            errors.append("G-code missing header or terminator")
+        # Only validate G-code if provided (for post-codegen validation)
+        if gcode is not None:
+            if not gcode or "PSEUDO-GCODE" not in gcode or "M30" not in gcode:
+                errors.append("G-code missing header or terminator")
 
         for idx, step in enumerate(plan):
             op = step.get("operation")
